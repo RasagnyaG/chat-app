@@ -45,6 +45,7 @@ h1{
 button {
   background-color: var(--secondary-hex);
   border: none;
+  font-family: 'Montserrat', sans-serif;
 }
 
 button:hover {

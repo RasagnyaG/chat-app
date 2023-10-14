@@ -1,0 +1,11 @@
+.start-chat-btn {
+    padding: 1rem 3rem;
+    border: 1px solid aliceblue;
+    background-color: transparent;
+    color : aliceblue;
+}
+
+.start-chat-btn:hover {
+    background-color: aliceblue;
+    color: #040412;
+}
