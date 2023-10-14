@@ -1,0 +1,22 @@
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+}
+
+input, button {
+    height: 3rem;
+    margin: 0.5rem;
+    width: 25rem;
+    padding: 1rem;
+}
+
+input:focus{
+    outline: none
+}
+
+
