@@ -6,12 +6,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
     align-items: center;
+    width: 60%;
 }
 
 input, button {
     height: 3rem;
     margin: 0.5rem;
-    width: 25rem;
+    width: 35rem;
     padding: 1rem;
 }
 
@@ -19,4 +20,33 @@ input:focus{
     outline: none
 }
 
+.preferences {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+.pref-chip-unchecked {
+    background-color: transparent;
+    color: aliceblue;
+    margin: 7px;
+    padding: 10px;
+    border: 1px solid aliceblue;
+}
+.pref-chip-unchecked:hover, .pref-chip-checked:hover {
+    cursor: pointer;
+}
+
+.pref-chip-checked {
+    background-color: aliceblue;
+    color: black;
+    margin: 7px;
+    padding: 10px;
+    border: 1px solid aliceblue;
+}
+
+form {
+    width: 35rem;
+}
 

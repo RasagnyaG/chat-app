@@ -21,16 +21,18 @@ const POST = async (
       data: {
         ...input,
         password: hash,
+        preferences: input.preferences.join(">"),
       },
     });
 
     const token =
       "Bearer " +
-      jwt.sign({ email: newUser.email }, process.env.JWT_SECRET as string);
+      jwt.sign({ id: newUser.id }, process.env.JWT_SECRET as string);
 
     res.status(200).send({ message: "Signed up successfully", token: token });
   } catch (error: any) {
-    throw new CustomError(error.message);
+    if (error instanceof CustomError) throw error;
+    else throw new CustomError(error.message);
   }
 };
 

@@ -5,6 +5,7 @@ import { redirect } from "next/navigation"
 import api from "@/utils/axios";
 import Error from "@/components/error";
 import { useRouter } from "next/router";
+import Cookies from 'js-cookie';
 const Signin = () => {
 
     const [email, setEmail] = useState("");
@@ -13,34 +14,39 @@ const Signin = () => {
     const router = useRouter()
 
     const handelSubmit = async (e: any) => {
+        console.log("clicked")
         e.preventDefault();
         try {
-            const res = await api.post("/api/auth/signin", {
+            const res = await api.post("auth/signin", {
                 email,
                 password
-            });
-            if (res.status == 200) router.push("/")
+            }, { headers: { 'Content-Type': 'application/json' } });
 
-            // handle errors thrown by the api
-            else {
-                if (res.status == 404) {
-                    setError("User not Found, please Signup");
-                    setTimeout(() => router.push("/auth/signup"), 3000)
-                }
-                if (res.status == 401) {
-                    setError("Invalid Password, try again");
-                }
+            if (res.status == 200) {
+                Cookies.set('token', res.data.token)
+                router.push("/")
             }
+
         } catch (e: any) {
-            setError(e.message)
+            if (e.request.status == 404) {
+                setError("User not Found, please Signup");
+                setTimeout(() => router.push("/auth/signup"), 3000)
+            }
+            else if (e.request.status == 401) {
+                setError("Invalid Password, try again");
+            }
+            else setError("Some Error Occured")
         }
     }
     return (
         <div className="auth-form">
             <h1>Signin</h1>
-            <input placeholder="Email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input placeholder="Password" required type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button type="submit" onClick={(e) => handelSubmit(e)}>Signin</button>
+            <form onSubmit={(e) => handelSubmit(e)}>
+                <input placeholder="Email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input placeholder="Password" required type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <button type="submit">Signin</button>
+
+            </form>
             <Link href="/auth/signup/" style={{ color: "white" }}>Don't have an account?</Link>
             {error && <Error message={error!} />}
         </div>

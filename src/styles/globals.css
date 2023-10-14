@@ -23,6 +23,12 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
 
 
 a {
