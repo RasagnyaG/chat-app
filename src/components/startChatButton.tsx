@@ -1,4 +1,5 @@
 'use client'
+import useSocket from "@/hooks/useSocket";
 import "@/styles/chat.css"
 import Cookies from "js-cookie"
 import { useRouter } from "next/navigation";
@@ -10,25 +11,28 @@ import { Socket, io } from "socket.io-client";
 const StartChatButton = ({ setNotFound }: { setNotFound: Function }) => {
 
     const router = useRouter();
-    const socket = io("ws://localhost:8000");
-    const socketRef = useRef<Socket | null>(null);
-    socketRef.current = socket;
+    // const socket = io("ws://localhost:8000");
+    // const socketRef = useRef<Socket | null>(null);
+    // socketRef.current = socket;
+
+    const socket = useSocket()
 
     // event listeners
-    socketRef.current.on('matched', (chatRoomId) => {
+    socket?.on('matched', (chatRoomId) => {
         router.push("/" + chatRoomId)
     });
 
-    socketRef.current.on('error', (msg) => {
+    socket?.on('error', (msg) => {
         console.log(msg);
         setNotFound(true);
     });
 
 
     const handlestartChat = () => {
-        if (socketRef.current) {
+        if (socket) {
             // Emit the 'startChat' event
-            socketRef.current.emit('startChat', Cookies.get("token"));
+            socket.emit('startChat', Cookies.get("token"));
+            console.log(socket)
         }
     };
 

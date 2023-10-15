@@ -1,22 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Socket, io } from "socket.io-client";
 
 // custom hook to establish a socket connection
 const useSocket = () => {
-  const [socket, setSocket] = useState<Socket | null>(null);
+  const socketRef = useRef<Socket | null>();
 
   useEffect(() => {
-    const socketInstance = io("ws://localhost:8000");
-    console.log(socketInstance);
-
-    setSocket(socketInstance);
-
-    // return () => {
-    //   socketInstance.disconnect();
-    // };
+    socketRef.current = io("ws://localhost:8000");
   }, []);
 
-  return socket;
+  return socketRef.current;
 };
 
 export default useSocket;

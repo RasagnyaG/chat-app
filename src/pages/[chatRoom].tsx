@@ -1,16 +1,16 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 import "@/styles/globals.css"
+import "@/styles/chat.css"
+import ChatRoom from '@/components/chatRoom'
 
-const ChatRoom = () => {
+const ChatRoompage = () => {
     const router = useRouter()
     const { chatRoom } = router.query
 
     return (
-        <div>
-            <h1 style={{ color: "red" }}>{chatRoom}</h1>
-        </div>
+        <ChatRoom />
     )
 }
 
-export default ChatRoom
+export default ChatRoompage
