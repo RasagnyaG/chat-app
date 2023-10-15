@@ -24,7 +24,7 @@ const POST = async (
         preferences: input.preferences.join(">"),
       },
     });
-    console.log(process.env.JWT_SECRET as string);
+
     const token =
       "Bearer " +
       jwt.sign({ id: newUser.id }, process.env.JWT_SECRET as string);

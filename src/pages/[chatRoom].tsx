@@ -9,7 +9,7 @@ const ChatRoompage = () => {
     const { chatRoom } = router.query
 
     return (
-        <ChatRoom />
+        chatRoom && <ChatRoom roomId={chatRoom as string} />
     )
 }
 

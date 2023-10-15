@@ -2,7 +2,7 @@ import useSocket from '@/hooks/useSocket'
 import React, { useEffect, useState } from 'react'
 import ChatMessage from './chatMessage'
 
-const ChatRoom = () => {
+const ChatRoom = ({ roomId }: { roomId: string }) => {
 
     const socket = useSocket()
     const [text, setText] = useState<string>('')
@@ -25,7 +25,7 @@ const ChatRoom = () => {
 
     useEffect(() => {
         // Retrieve messages from localStorage
-        const storedMessages = localStorage.getItem("chatMessages");
+        const storedMessages = localStorage.getItem(roomId);
         if (storedMessages) {
             const parsedMessages = JSON.parse(storedMessages);
             setMessages(parsedMessages);
@@ -33,7 +33,7 @@ const ChatRoom = () => {
     }, []);
 
     useEffect(() => {
-        localStorage.setItem("chatMessages", JSON.stringify(messages));
+        localStorage.setItem(roomId, JSON.stringify(messages));
     }, [messages])
 
     return (

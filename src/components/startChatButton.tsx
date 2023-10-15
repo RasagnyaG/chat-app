@@ -17,7 +17,6 @@ const StartChatButton = ({ setNotFound, setStarted }: { setNotFound: Function, s
 
     const socket = useSocket()
 
-
     // event listeners
     socket?.on('matched', (chatRoomId) => {
         router.push("/" + chatRoomId)
@@ -28,19 +27,16 @@ const StartChatButton = ({ setNotFound, setStarted }: { setNotFound: Function, s
         setNotFound(true);
     });
 
-
-
-
-
     const handlestartChat = () => {
         console.log("clicked")
-        console.log(socket)
-        if (socket) {
+        console.log(socket?.connected)
+        if (socket?.connected) {
             // Emit the 'startChat' event
             socket.emit('startChat', Cookies.get("token"));
             console.log(socket)
             setStarted(true)
         }
+        else setNotFound(true)
     };
 
     return (

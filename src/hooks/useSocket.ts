@@ -9,9 +9,11 @@ const useSocket = () => {
   const [socket, setSocket] = useState<Socket>();
 
   useEffect(() => {
-    // console.log("socket");
-    // console.log(process.env.SOCKET_URL);
+    console.log("socket");
+    console.log("url : ", process.env.SOCKET_URL);
+
     const socket = io("ws://localhost:8000");
+
     setSocket(socket);
     console.log(socket);
   }, []);
