@@ -9,6 +9,7 @@ import { useRouter } from "next/router"
 import Error from "@/components/error";
 import Chip from "./chip"
 import Cookies from 'js-cookie';
+import axios from "axios"
 
 const Signup = () => {
 
@@ -38,13 +39,16 @@ const Signup = () => {
         e.preventDefault();
         console.log({ ...submitData, preferences })
         try {
-            const res = await api.post("/auth/signup", { ...submitData, preferences });
-            if (res.status == 200) {
+            const res = await axios.post("/api/auth/signup", { ...submitData, preferences });
+            console.log(res)
+            if (res.status == 200 && res.data.message == "Signed up successfully") {
+                console.log(res.data)
                 Cookies.set('token', res.data.token)
                 router.push("/");
             }
-
+            else setError("Some Error Occured")
         } catch (e: any) {
+            console.log(e)
             if (e.request.status == 409) {
                 setError("User already exists, please signin in");
                 setTimeout(() => router.push("/auth/signin"), 3000)

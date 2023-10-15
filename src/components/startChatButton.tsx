@@ -8,7 +8,7 @@ import { Socket, io } from "socket.io-client";
 
 
 
-const StartChatButton = ({ setNotFound }: { setNotFound: Function }) => {
+const StartChatButton = ({ setNotFound, setStarted }: { setNotFound: Function, setStarted: Function }) => {
 
     const router = useRouter();
     // const socket = io("ws://localhost:8000");
@@ -16,6 +16,7 @@ const StartChatButton = ({ setNotFound }: { setNotFound: Function }) => {
     // socketRef.current = socket;
 
     const socket = useSocket()
+
 
     // event listeners
     socket?.on('matched', (chatRoomId) => {
@@ -28,12 +29,17 @@ const StartChatButton = ({ setNotFound }: { setNotFound: Function }) => {
     });
 
 
+
+
+
     const handlestartChat = () => {
         console.log("clicked")
+        console.log(socket)
         if (socket) {
             // Emit the 'startChat' event
             socket.emit('startChat', Cookies.get("token"));
             console.log(socket)
+            setStarted(true)
         }
     };
 

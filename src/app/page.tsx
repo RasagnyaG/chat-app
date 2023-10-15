@@ -4,7 +4,7 @@ import StartChatPage from "@/components/startChatPage";
 import "@/styles/globals.css"
 
 export default function Home() {
-  let token = cookies().get("token");
+  let token = cookies().get("token")?.value;
   if (!token) return redirect("/auth/signin/");
   return (
     <StartChatPage />

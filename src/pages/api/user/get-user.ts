@@ -9,7 +9,7 @@ const GET = async (req: NextApiRequest, res: NextApiResponse<User>) => {
   console.log("request made");
   try {
     const token: string = (req.headers["token"] as string).split(" ")[1];
-
+    console.log("token", token);
     const jwtPayload = jwt.decode(token) as JwtPayload;
     console.log(jwtPayload);
     let id = "";

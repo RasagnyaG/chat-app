@@ -6,6 +6,7 @@ import api from "@/utils/axios";
 import Error from "@/components/error";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
+import axios from "axios";
 const Signin = () => {
 
     const [email, setEmail] = useState("");
@@ -17,7 +18,7 @@ const Signin = () => {
         console.log("clicked")
         e.preventDefault();
         try {
-            const res = await api.post("auth/signin", {
+            const res = await axios.post("/api/auth/signin", {
                 email,
                 password
             }, { headers: { 'Content-Type': 'application/json' } });
@@ -26,8 +27,9 @@ const Signin = () => {
                 Cookies.set('token', res.data.token)
                 router.push("/")
             }
-
+            console.log(res)
         } catch (e: any) {
+            console.log(e)
             if (e.request.status == 404) {
                 setError("User not Found, please Signup");
                 setTimeout(() => router.push("/auth/signup"), 3000)

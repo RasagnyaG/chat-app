@@ -10,7 +10,7 @@ const POST = async (
   res: NextApiResponse<authResponse>
 ) => {
   let input = req.body;
-
+  console.log("here");
   try {
     let check = await prisma.user.findUnique({ where: { email: input.email } });
 
@@ -24,7 +24,7 @@ const POST = async (
         preferences: input.preferences.join(">"),
       },
     });
-
+    console.log(process.env.JWT_SECRET as string);
     const token =
       "Bearer " +
       jwt.sign({ id: newUser.id }, process.env.JWT_SECRET as string);

@@ -24,6 +24,7 @@ const POST = async (
 
     const token =
       "Bearer " + jwt.sign({ id: user.id }, process.env.JWT_SECRET as string);
+    console.log(token);
 
     res.status(200).send({ message: "Successfully Logged in", token: token });
     return;
