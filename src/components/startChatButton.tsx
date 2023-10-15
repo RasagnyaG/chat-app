@@ -29,6 +29,7 @@ const StartChatButton = ({ setNotFound }: { setNotFound: Function }) => {
 
 
     const handlestartChat = () => {
+        console.log("clicked")
         if (socket) {
             // Emit the 'startChat' event
             socket.emit('startChat', Cookies.get("token"));

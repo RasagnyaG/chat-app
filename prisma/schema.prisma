@@ -17,4 +17,15 @@ model User {
   phone       String @unique
   preferences String
   password    String
+  // preferences Preference[]
+
+  @@index([email])
 }
+
+// preference could be a seperate table for easier matchmaking
+
+// model Preference {
+//   id   String @id @default(uuid())
+//   name String
+//   users    User[]
+// }
