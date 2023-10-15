@@ -47,7 +47,7 @@ const Signin = () => {
                 <button type="submit">Signin</button>
 
             </form>
-            <Link href="/auth/signup/" style={{ color: "white" }}>Don't have an account?</Link>
+            <Link href="/auth/signup/" style={{ color: "white" }}> Don&apos;t have an account? </Link>
             {error && <Error message={error!} />}
         </div>
     )
