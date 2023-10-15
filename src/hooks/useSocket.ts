@@ -6,7 +6,7 @@ const useSocket = () => {
   const socketRef = useRef<Socket | null>();
 
   useEffect(() => {
-    socketRef.current = io("ws://localhost:8000");
+    socketRef.current = io(process.env.SOCKET_URL as string);
   }, []);
 
   return socketRef.current;
