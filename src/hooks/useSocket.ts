@@ -12,7 +12,7 @@ const useSocket = () => {
     console.log("socket");
     console.log("url : ", process.env.SOCKET_URL);
 
-    const socket = io("ws://localhost:8000");
+    const socket = io(process.env.SOCKET_URL as string);
 
     setSocket(socket);
     console.log(socket);
