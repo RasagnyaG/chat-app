@@ -1,3 +1,7 @@
+# Deployed link
+
+<a href='https://chat-app-c4wu-62oxrxsv9-rasagnyas-projects.vercel.app/' target=_blank>https://chat-app-c4wu-62oxrxsv9-rasagnyas-projects.vercel.app/</a>
+
 # Setup instructions
 
 1. install dependencies
