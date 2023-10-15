@@ -10,9 +10,13 @@ const useSocket = () => {
 
   useEffect(() => {
     console.log("socket");
-    console.log("url : ", process.env.SOCKET_URL);
+    const socket = io(
+      "https://chat-app-socket.kindpebble-2db3b833.australiaeast.azurecontainerapps.io"
+    );
 
-    const socket = io(process.env.SOCKET_URL as string);
+    socket.on("connect", () => {
+      console.log("Connected to the socket server");
+    });
 
     setSocket(socket);
     console.log(socket);

@@ -1,6 +1,6 @@
 # Deployed link
 
-<a href='https://chat-app-c4wu-62oxrxsv9-rasagnyas-projects.vercel.app/' target=_blank>https://chat-app-c4wu-62oxrxsv9-rasagnyas-projects.vercel.app/</a>
+<a href='https://chat-app-c4wu.vercel.app/' target=_blank>https://chat-app-c4wu.vercel.app/</a>
 
 # Setup instructions
 
